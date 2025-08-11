@@ -1,6 +1,6 @@
 const app=require("express")();
 const mysql=require("mysql2");
-const axios =require('axios');
+const axios =require("axios");
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize('wheather','root','root',
   {
@@ -39,6 +39,9 @@ const weather=sequelize.define('weather', {
 })
 sequelize.sync({force:true})
 // This is the Route When the user req matches the Route It will call the callback
+
+
+
 app.get("/:id",async (req,res)=>{ 
     const city=req.params.id;
     console.log(city)
@@ -105,3 +108,4 @@ app.listen(3000,()=>{ // listen is used for creating the server
     console.log("server connected sucessfully")
 
 })
+
