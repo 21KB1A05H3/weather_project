@@ -10,8 +10,8 @@ const sequelize = new Sequelize('wheather','root','root',
 );
 
 //connecting Database and check it connect or not
-const connection=sequelize.authenticate() 
-connection.then(()=>{
+sequelize.authenticate() 
+.then(()=>{
     console.log("DB connect sucessfully")
 })
 
@@ -37,6 +37,7 @@ const weather=sequelize.define('weather', {
       allowNull: false
     },
 })
+sequelize.sync({force:true})
 // This is the Route When the user req matches the Route It will call the callback
 app.get("/:id",async (req,res)=>{ 
     const city=req.params.id;
@@ -102,4 +103,5 @@ app.get('/weather/all', async (req, res) => {
 
 app.listen(3000,()=>{ // listen is used for creating the server
     console.log("server connected sucessfully")
+
 })
